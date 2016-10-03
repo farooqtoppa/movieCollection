@@ -10,6 +10,20 @@ var hbs             = require('hbs');
 // Instantiate new Express app:
 var app             = express();
 
+//====================================
+// MIDDLE WARE
+//====================================
+app.set("view engine", "hbs");
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(methodOverride('_method'));
+app.use(express.static(__dirname + '/public'));
+
+// route route
+app.get('/', function(req, res){
+  res.send("<h1>Welcome</h1>");
+});
+
 //Specify Mongo database
 mongoose.connect('mongodb://localhost/moviecollection');
 
