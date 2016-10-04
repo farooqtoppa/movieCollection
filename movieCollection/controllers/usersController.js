@@ -11,10 +11,9 @@ var Movie = Schema.Movie
 // USERS INDEX ROUTE (Shows all instances of a resource)
 // =====================================================
 router.get('/', function(req, res){
-  User.find({}, function(err, users){
-    console.log(users);
-    res.send(users);
-  });
+    User.find({}, function(err, users){
+        res.render('users/index', {users: users});
+    });
 });
 
 

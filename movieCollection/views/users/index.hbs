@@ -1,0 +1,17 @@
+<a id="newUser" href="/users/new">New User</a>
+{{#each users}}
+    <div class="user">
+        <div class="userName"><a href="/users/{{_id}}">{{username}}</a></div>
+            {{#each movies}}
+                <p class="movie">
+	                Title: {{this.title}}<br>
+	                Stars: {{this.stars}}<br>
+	                Genre: {{this.genre}}<br>
+	                Year Released: {{this.year}}<br>
+	                Duration: {{this.duration}} minutes<br>
+	                Rated: {{this.rated}}
+                </p>
+            {{/each}}
+            <br>
+        </div>
+{{/each}}
