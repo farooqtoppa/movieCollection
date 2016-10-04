@@ -8,7 +8,7 @@ var User = Schema.User
 var Movie = Schema.Movie
 
 // ==============================
-// INDEX ROUTE
+// USER INDEX ROUTE
 // ==============================
 router.get('/', function(req, res){
     User.find({}, function(err, users){
@@ -17,15 +17,24 @@ router.get('/', function(req, res){
 });
 
 // ================================
-// NEW ROUTE
+// USER NEW ROUTE
 // ================================
 router.get('/new', function(req, res){
     res.render('users/new');
 });
 
 // ================================
-// CREATE ROUTE
+// USER CREATE ROUTE
 // ================================
+router.post('/', function(req, res){
+  var user = new User({
+    username: req.body.name,
+    movies: req.body.movies
+  });
+  user.save(function(err, user){
+    res.redirect('/users');
+  });
+});
 
 
 
