@@ -2,14 +2,16 @@ var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 // constructor function for mongoose
-var Scehma = mongoose.Schema
+var Schema = mongoose.Schema
 
 //Schemas
 var MovieSchema = new Schema({
   title: String,
-  actors: String,
+  stars: String,
   genre: String,
-  released: String
+  year: Number,
+  duration: Number,
+  rated: String
 });
 
 var UserSchema = new Schema({
