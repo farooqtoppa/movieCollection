@@ -47,6 +47,13 @@ router.post('/', function(req, res){
   });
 });
 
+// AUTHOR EDIT ROUTE
+router.get('/:id/edit', function(req, res){
+  User.findById(req.params.id, function(err, user){
+    res.render('users/edit', {user: user});
+  });
+});
+
 
 
 
