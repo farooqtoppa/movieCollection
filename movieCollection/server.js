@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride('_method')); // for
 app.use(express.static(__dirname + '/public')); // for css
 
+// create a usersController
 var usersController = require("./controllers/usersController.js");
 app.use('/users', usersController);
 

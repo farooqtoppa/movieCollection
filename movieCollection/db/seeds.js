@@ -41,7 +41,7 @@ var movie2 = new Movie({
 });
 
 var movie3 = new Movie({
-  title: "The Gooines",
+  title: "The Goonies",
   year: 1985,
   stars: "Sean Astin, Josh Brolin, Jeff Cohen",
   genre: "Adventure, Comedy, Family",
