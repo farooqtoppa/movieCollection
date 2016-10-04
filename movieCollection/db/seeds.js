@@ -1,8 +1,7 @@
 // this file is ran seperately
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/reminderly');
-
+mongoose.connect('mongodb://localhost/moviecollection');
 var Schema = require("./schema.js");
 
 var User = Schema.User
@@ -18,12 +17,8 @@ Movie.remove({}, function(err){
 });
 
 // create users
-var farooq = new User({
-  username: "Farooq",
-});
-var marc = new User({
-  username: "Marc",
-});
+var farooq = new User({username: "Farooq",});
+var marc = new User({username: "Marc",});
 
 // create movies
 var movie1 = new Movie({
@@ -50,7 +45,23 @@ var movie2 = new Movie({
 farooq.movies.push(movie1);
 marc.movies.push(movie2);
 
-console.log(farooq);
-console.log(marc);
+// save to db
+farooq.save(function(err){
+  if(err){
+    console.log(err)
+  }
+  else{
+   console.log("user was saved successfully");
+  }
+});
+
+marc.save(function(err){
+  if(err){
+    console.log(err)
+  }
+  else{
+    console.log("user was saved successfully");
+  }
+});
 
 
