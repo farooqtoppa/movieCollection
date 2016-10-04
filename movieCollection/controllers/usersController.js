@@ -67,16 +67,14 @@ router.put('/:id', function(req, res){
     });
 });
 
-
-
-
-
-
-
-
-
-
-
+// ==================================
+// AUTHOR DELETE ROUTE
+// ==================================
+router.get('/:id/delete', function(req, res){
+    User.findByIdAndRemove(req.params.id, function(err, user){
+        res.redirect('/users');
+    });
+});
 
 // export router
 module.exports = router;
