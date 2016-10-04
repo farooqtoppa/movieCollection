@@ -11,16 +11,27 @@ var Movie = Schema.Movie
 // USER INDEX ROUTE
 // ==============================
 router.get('/', function(req, res){
-    User.find({}, function(err, users){
-        res.render('users/index', {users: users});
-    });
+  User.find({}, function(err, users){
+    res.render('users/index', {users: users});
+  });
 });
 
 // ================================
 // USER NEW ROUTE
 // ================================
 router.get('/new', function(req, res){
-    res.render('users/new');
+  res.render('users/new');
+});
+
+// ================================
+// USER SHOW ROUTE
+// ================================
+router.get('/:id', function(req, res){
+  User.findById(req.params.id, function(err, user){
+     //console.log(user);
+    //res.send(user);
+    res.render('users/show', {user: user});
+  });
 });
 
 // ================================
@@ -35,6 +46,10 @@ router.post('/', function(req, res){
     res.redirect('/users');
   });
 });
+
+
+
+
 
 
 

@@ -1,0 +1,41 @@
+<h2>{{user.username}}s Movie Collection</h2>
+<div>
+{{#each user.movies}}
+  <div class="reminders-show-each">
+    <p>Title: {{this.title}}</p><br>
+    <p>Stars: {{this.stars}}</p><br>
+    <p>Genre: {{this.genre}}</p><br>
+    <p>Year: {{this.year}}</p><br>
+    <p>Duration: {{this.duration}} minutes</p><br>
+    <p>Rated: {{this.rated}}</p><br>
+    <form method="post" action="/authors/{{../user._id}}/reminders/{{_id}}?_method=delete">
+        <input type="submit" value="Done!">
+    </form>
+  </div>
+{{/each}}
+</div>
+
+<div id="reminder-new">
+  <h3>New Movie</h3>
+    <form action="/users/{{user._id}}/movies" method="post">
+        <label>Title: </label>
+        <input type="text" name="newReminder"><br>
+        <label>Stars: </label>
+        <input type="text" name="newReminder"><br>
+        <label>Genre: </label>
+        <input type="text" name="newReminder"><br>
+        <label>Year: </label>
+        <input type="text" name="newReminder"><br>
+        <label>Duration: </label>
+        <input type="text" name="newReminder"><br>
+        <label>Rated: </label>
+        <input type="text" name="newReminder"><br>
+        <input type="submit">
+    </form>
+</div>
+
+
+<div id="author-edit">
+    <a href="/users/{{user._id}}/edit">Edit User</a>
+    <a href="/users">Back</a>
+</div>
