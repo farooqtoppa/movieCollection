@@ -8,7 +8,7 @@
     <p>Year: {{this.year}}</p><br>
     <p>Duration: {{this.duration}} minutes</p><br>
     <p>Rated: {{this.rated}}</p><br>
-    <form method="post" action="/authors/{{../user._id}}/movies/{{_id}}?_method=delete">
+    <form method="post" action="/users/{{../user._id}}/movies/{{_id}}?_method=delete">
         <input type="submit" value="Done!">
     </form>
   </div>
@@ -19,23 +19,23 @@
   <h3>New Movie</h3>
     <form action="/users/{{user._id}}/movies" method="post">
         <label>Title: </label>
-        <input type="text" name="newReminder"><br>
+        <input type="text" name="title"><br>
         <label>Stars: </label>
-        <input type="text" name="newReminder"><br>
+        <input type="text" name="stars"><br>
         <label>Genre: </label>
-        <input type="text" name="newReminder"><br>
+        <input type="text" name="genre"><br>
         <label>Year: </label>
-        <input type="text" name="newReminder"><br>
+        <input type="text" name="year"><br>
         <label>Duration: </label>
-        <input type="text" name="newReminder"><br>
+        <input type="text" name="duration"><br>
         <label>Rated: </label>
-        <input type="text" name="newReminder"><br>
+        <input type="text" name="rated"><br>
         <input type="submit">
     </form>
 </div>
 
 
 <div id="author-edit">
-    <a href="/users/{{user._id}}/edit">Edit User</a>
+    <a href="/users/{{user._id}}/edit">Edit My Account</a>
     <a href="/users">Back</a>
 </div>

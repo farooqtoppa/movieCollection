@@ -60,21 +60,39 @@ router.get('/:id/edit', function(req, res){
 // USER UPDATE ROUTE
 //==================================
 router.put('/:id', function(req, res){
-    User.findByIdAndUpdate(req.params.id, {
-        username: req.body.name
-    }, {new: true}, function(err, user){
+  User.findByIdAndUpdate(req.params.id, {
+  username: req.body.name
+  }, {new: true}, function(err, user){
         res.render('users/show', {user: user});
-    });
+  });
 });
 
 // ==================================
-// AUTHOR DELETE ROUTE
+// USER DELETE ROUTE
 // ==================================
 router.get('/:id/delete', function(req, res){
-    User.findByIdAndRemove(req.params.id, function(err, user){
-        res.redirect('/users');
-    });
+  User.findByIdAndRemove(req.params.id, function(err, user){
+    res.redirect('/users');
+  });
 });
 
+// ==================================
+// MOVIE CREATE ROUTE
+// ==================================
+router.post('/:id/movies', function(req, res){
+  User.findById(req.params.id, function(err, user){
+    user.movies.push(new Movie({
+      title: req.body.title,
+      stars: req.body.stars,
+      genre: req.body.genre,
+      year: req.body.year,
+      duration: req.body.duration,
+      rated: req.body.rated
+    }))
+    user.save(function(err){
+      res.redirect(`/users/${user.id}`);
+    });
+  });
+});
 // export router
 module.exports = router;
