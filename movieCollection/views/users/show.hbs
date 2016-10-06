@@ -1,21 +1,26 @@
-<h2>{{user.username}}s Movie Collection</h2>
+<div id="user-edit">
+    <a href="/users/{{user._id}}/edit">Edit My Account</a>
+    <a href="/users">Go To Home Page</a>
+</div>
+
+{{usertrue}}
 <div>
 {{#each user.movies}}
-  <div class="reminders-show-each">
-    <p>Title: {{this.title}}</p><br>
-    <p>Stars: {{this.stars}}</p><br>
-    <p>Genre: {{this.genre}}</p><br>
-    <p>Year: {{this.year}}</p><br>
-    <p>Duration: {{this.duration}} minutes</p><br>
-    <p>Rated: {{this.rated}}</p><br>
+  <div class="each-movie">
+    <p>Title: {{this.title}}</p>
+    <p>Stars: {{this.stars}}</p>
+    <p>Genre: {{this.genre}}</p>
+    <p>Year: {{this.year}}</p>
+    <p>Duration: {{this.duration}} minutes</p>
+    <p>Rated: {{this.rated}}</p>
     <form method="post" action="/users/{{../user._id}}/movies/{{_id}}?_method=delete">
-        <input type="submit" value="Done!">
+        <input type="submit" value="Delete Movie">
     </form>
   </div>
 {{/each}}
 </div>
 
-<div id="reminder-new">
+<div id="new-movie">
   <h3>New Movie</h3>
     <form action="/users/{{user._id}}/movies" method="post">
         <label>Title: </label>
@@ -34,8 +39,3 @@
     </form>
 </div>
 
-
-<div id="author-edit">
-    <a href="/users/{{user._id}}/edit">Edit My Account</a>
-    <a href="/users">Back</a>
-</div>

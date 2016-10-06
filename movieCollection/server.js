@@ -6,9 +6,15 @@ var mongoose        = require('mongoose');
 var bodyParser      = require('body-parser');
 var methodOverride  = require('method-override');
 var hbs             = require('hbs');
+var passport        = require('passport');
+var session         = require('express-session');
 
 // Instantiate new Express app:
 var app             = express();
+
+//Specify Mongo database
+mongoose.connect('mongodb://localhost/moviecollection');
+require('./config/passport.js')(passport);
 
 //====================================
 // MIDDLE WARE
@@ -16,6 +22,11 @@ var app             = express();
 app.set("view engine", "hbs");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+
+app.use(session({ name: 'maps_auth_app', secret: 'conventional wisdom' }));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(methodOverride('_method'));
 app.use(express.static(__dirname + '/public')); // for css
 
@@ -27,9 +38,6 @@ app.use('/users', usersController);
 app.get('/', function(req, res){
   res.send("<h1>Welcome</h1>");
 });
-
-//Specify Mongo database
-mongoose.connect('mongodb://localhost/moviecollection');
 
 // save connection to data base
 var db = mongoose.connection;

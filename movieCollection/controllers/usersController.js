@@ -1,4 +1,5 @@
 var express = require('express');
+var passport = require('passport');
 
 // allows us to put our routes in seperate files
 var router = express.Router();
@@ -16,6 +17,28 @@ router.get('/', function(req, res){
   });
 });
 
+router.get('/logout', function(req, res){
+  req.logout();
+  console.log(req.user);
+  res.redirect('/users');
+
+});
+
+// login
+router.post('/login', passport.authenticate('local-login', {
+    failureRedirect: '/users' }), function(req, res) {
+      console.log("logged in user ",req.user);
+    // success redirect goes to show page
+    res.redirect('/users/' + req.user.id);
+});
+
+// show all objects for testing purposes
+router.get('/json', function(req, res){
+  User.find(function(err, users){
+    res.send(users);
+  })
+});
+
 // ================================
 // USER NEW ROUTE
 // ================================
@@ -26,25 +49,32 @@ router.get('/new', function(req, res){
 // ================================
 // USER SHOW ROUTE
 // ================================
-router.get('/:id', function(req, res){
+router.get('/:id',isLoggedIn, function(req, res){
+if(req.params.id == req.user.id){
   User.findById(req.params.id, function(err, user){
      //console.log(user);
     //res.send(user);
     res.render('users/show', {user: user});
   });
+}
+  else{
+    res.redirect('/users')
+  }
+
+  //req.params.id == req.user.id ? res.locals.usertrue = true : res.locals.usertrue = false;
+
 });
 
 // ================================
 // USER CREATE ROUTE
 // ================================
-router.post('/', function(req, res){
-  var user = new User({
-    username: req.body.name,
-    movies: req.body.movies
-  });
-  user.save(function(err, user){
-    res.redirect('/users');
-  });
+
+// user create -- signup
+router.post('/', passport.authenticate('local-signup', {
+    failureRedirect: '/users' }), function(req, res) {
+    //success redirect goes to show page
+    console.log(req.user);
+    res.redirect('/users/' + req.user.id);
 });
 
 // =================================
@@ -94,5 +124,27 @@ router.post('/:id/movies', function(req, res){
     });
   });
 });
+
+// REMOVE A MOVIE
+router.delete('/:userId/movies/:id', function (req, res){
+  User.findByIdAndUpdate(req.params.userId, {
+    $pull: {
+      movies: {_id: req.params.id}
+    }
+  }, function(err) {
+    res.redirect(`/users/${req.params.userId}`);
+  });
+});
+
+// middleware to check login status
+// used in show route
+function isLoggedIn(req, res, next) {
+    console.log('isLoggedIn middleware');
+  if (req.isAuthenticated()) {
+      return next();
+  } else {
+      res.redirect('/users');
+  }
+}
 // export router
 module.exports = router;
