@@ -13,7 +13,10 @@ var session         = require('express-session');
 var app             = express();
 
 //Specify Mongo database
-mongoose.connect('mongodb://localhost/moviecollection');
+var mongoURI =  process.env.MONGODB_URI || 'mongodb://localhost/moviecollection';
+mongoose.connect(mongoURI);
+
+//mongoose.connect('mongodb://localhost/moviecollection');
 require('./config/passport.js')(passport);
 
 //====================================
@@ -53,7 +56,8 @@ db.once('open', function(){
 });
 
 // listening port
-app.listen(3000, function(){
+
+app.listen(process.env.PORT || 3000, function(){
   console.log("app listening on port 3000");
 });
 
