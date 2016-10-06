@@ -1,35 +1,43 @@
 var express = require('express');
-var passport = require('passport');
-
-// allows us to put our routes in seperate files
 var router = express.Router();
-
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 var Schema = require("../db/schema.js");
 var User = Schema.User
 var Movie = Schema.Movie
 
-// ==============================
-// USER INDEX ROUTE
-// ==============================
-router.get('/', function(req, res){
-  User.find({}, function(err, users){
-    res.render('users/index', {users: users});
-  });
-});
 
-router.get('/logout', function(req, res){
-  req.logout();
-  console.log(req.user);
+router.get('/login', function(req,res){
   res.redirect('/users');
-
 });
 
 // login
-router.post('/login', passport.authenticate('local-login', {
-    failureRedirect: '/users' }), function(req, res) {
-      console.log("logged in user ",req.user);
-    // success redirect goes to show page
-    res.redirect('/users/' + req.user.id);
+router.post('/login', passport.authenticate('local'),function(req,res) {
+  req.session.save(function (err) {
+    if(err) return next(err);
+    res.redirect('/users');
+  });
+});
+
+// ==============================
+// USER INDEX ROUTE
+// ==============================
+router.get('/', (req, res) =>{
+  console.log('This is the session >>>>>',req.session)
+  console.log('This is req.user >>>>>',req.user)
+  var query = User.find({});
+  query.then(function(users) {
+    res.render('users/index', {users: users, user: req.user})
+  })
+  .catch(function(err){
+    console.log(err)
+  });
+});
+
+// log out
+router.get('/logout', function(req,res) {
+  req.logout();
+  res.redirect('/users');
 });
 
 // show all objects for testing purposes
@@ -38,6 +46,14 @@ router.get('/json', function(req, res){
     res.send(users);
   })
 });
+
+var authenticate = function(req, res, next) {
+  if(!req.user || req.user._id != req.params.id) {
+    res.json({status: 401, message: 'unauthorized'})
+  } else {
+    next()
+  }
+}
 
 // ================================
 // USER NEW ROUTE
@@ -49,33 +65,31 @@ router.get('/new', function(req, res){
 // ================================
 // USER SHOW ROUTE
 // ================================
-router.get('/:id',isLoggedIn, function(req, res){
-if(req.params.id == req.user.id){
-  User.findById(req.params.id, function(err, user){
-     //console.log(user);
-    //res.send(user);
-    res.render('users/show', {user: user});
-  });
-}
-  else{
-    res.redirect('/users')
-  }
+router.get('/:id', authenticate,function(req, res) {
+    var query = User.findById({_id: req.params.id})
 
-  //req.params.id == req.user.id ? res.locals.usertrue = true : res.locals.usertrue = false;
-
+    query.then(function(user) {
+      res.render('users/show', {data: user, user: req.user})
+    })
+    .catch(function(err) {
+      res.json({message: 'nope' + err});
+    });
 });
+
 
 // ================================
 // USER CREATE ROUTE
 // ================================
-
-// user create -- signup
-router.post('/', passport.authenticate('local-signup', {
-    failureRedirect: '/users' }), function(req, res) {
-    //success redirect goes to show page
-    console.log(req.user);
-    res.redirect('/users/' + req.user.id);
+router.post('/', function(req, res){
+  User.register(
+    new User({username: req.body.username}),
+    req.body.password,
+    function(err, user) {
+      if(err) return res.json({user: user});
+      res.redirect('/users');
+    });
 });
+
 
 // =================================
 // USER EDIT ROUTE
@@ -136,15 +150,6 @@ router.delete('/:userId/movies/:id', function (req, res){
   });
 });
 
-// middleware to check login status
-// used in show route
-function isLoggedIn(req, res, next) {
-    console.log('isLoggedIn middleware');
-  if (req.isAuthenticated()) {
-      return next();
-  } else {
-      res.redirect('/users');
-  }
-}
+
 // export router
 module.exports = router;

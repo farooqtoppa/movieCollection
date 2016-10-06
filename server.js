@@ -7,31 +7,42 @@ var bodyParser      = require('body-parser');
 var methodOverride  = require('method-override');
 var hbs             = require('hbs');
 var passport        = require('passport');
+var localStrategy   = require('passport-local').Strategy;
+var methodOverride = require('method-override');
 var session         = require('express-session');
-
+var User = require('./db/schema.js').User
 // Instantiate new Express app:
 var app             = express();
 
 //Specify Mongo database
+//Specify Mongo database
 var mongoURI =  process.env.MONGODB_URI || 'mongodb://localhost/moviecollection';
 mongoose.connect(mongoURI);
 
-//mongoose.connect('mongodb://localhost/moviecollection');
-require('./config/passport.js')(passport);
 
 //====================================
 // MIDDLE WARE
 //====================================
-app.set("view engine", "hbs");
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:true}));
 
-app.use(session({ name: 'maps_auth_app', secret: 'conventional wisdom' }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+app.set("view engine", "hbs");
+
+app.use(require('express-session')({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUnintialized: false
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 app.use(methodOverride('_method'));
 app.use(express.static(__dirname + '/public')); // for css
+
 
 // create a usersController
 var usersController = require("./controllers/usersController.js");
@@ -56,7 +67,6 @@ db.once('open', function(){
 });
 
 // listening port
-
 app.listen(process.env.PORT || 3000, function(){
   console.log("app listening on port 3000");
 });
