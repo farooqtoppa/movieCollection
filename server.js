@@ -10,11 +10,11 @@ var passport        = require('passport');
 var localStrategy   = require('passport-local').Strategy;
 var methodOverride = require('method-override');
 var session         = require('express-session');
+var morgan = require('morgan');
 var User = require('./db/schema.js').User
 // Instantiate new Express app:
 var app             = express();
 
-//Specify Mongo database
 //Specify Mongo database
 var mongoURI =  process.env.MONGODB_URI || 'mongodb://localhost/moviecollection';
 mongoose.connect(mongoURI);
