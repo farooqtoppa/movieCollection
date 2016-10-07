@@ -50,7 +50,7 @@ app.use('/users', usersController);
 
 // route route
 app.get('/', function(req, res){
-  res.send("<h1>Welcome</h1>");
+  res.redirect('/users');
 });
 
 // save connection to data base

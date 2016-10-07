@@ -15,7 +15,7 @@ router.get('/login', function(req,res){
 router.post('/login', passport.authenticate('local'),function(req,res) {
   req.session.save(function (err) {
     if(err) return next(err);
-    res.redirect('/users');
+    res.redirect('/users/' + req.user.id);
   });
 });
 
