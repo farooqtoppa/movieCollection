@@ -1,26 +1,5 @@
-{{#if user}}
-<a href="/users/logout"><p>Logout</p></a>
-
-<!--<a id="newUser" href="/users/new">New User</a>-->
-{{#each users}}
-    <div class=>
-    <div class=><a href="/users/{{_id}}">{{username}}</a></div>
-        {{#each movies}}
-            <p class="movie">
-               Title: {{this.title}}<br>
-               Stars: {{this.stars}}<br>
-               Genre: {{this.genre}}<br>
-               Year Released: {{this.year}}<br>
-               Duration: {{this.duration}} minutes<br>
-               Rated: {{this.rated}}<br>
-            </p><br>
-        {{/each}}
-    </div>
-{{/each}}
-
-
-{{else}}
 <h4>Log in</h4>
+
 <form action="/users/login" method="POST">
     <input type="text" name="username" placeholder="username">
     <input type="password" name="password" placeholder="password">
@@ -34,6 +13,23 @@
     <input type="password" name="password" placeholder="password">
     <input type="submit">
 </form>
-{{/if}}
 
+<a href="/users/logout"><p>Logout</p></a>
+
+<!--<a id="newUser" href="/users/new">New User</a>-->
+{{#each users}}
+    <div class=>
+    <div class=><a href="/users/{{_id}}">{{username}}</a></div>
+        {{#each movies}}
+            <p class="movie">
+             Title: {{this.title}}<br>
+             Stars: {{this.stars}}<br>
+             Genre: {{this.genre}}<br>
+             Year Released: {{this.year}}<br>
+             Duration: {{this.duration}} minutes<br>
+             Rated: {{this.rated}}<br>
+            </p><br>
+        {{/each}}
+    </div>
+{{/each}}
 
