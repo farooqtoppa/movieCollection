@@ -1,3 +1,4 @@
+<a href="/users/logout"><p>Logout</p></a>
 <h4>Log in</h4>
 
 <form action="/users/login" method="POST">
@@ -14,14 +15,12 @@
     <input type="submit">
 </form>
 
-<a href="/users/logout"><p>Logout</p></a>
-
 <!--<a id="newUser" href="/users/new">New User</a>-->
 {{#each users}}
     <div class="users"><a href="/users/{{_id}}">{{username}}</a></div>
 
     {{#each movies}}
-        <table border="5">
+        <table style="width:100%">
             <tr>
                 <td>Title</td>
                 <td>Stars</td>
@@ -35,8 +34,9 @@
                 <td>{{this.stars}}</td>
                 <td>{{this.genre}}</td>
                 <td>{{this.year}}</td>
-                <td>{{this.duration}}</td>
+                <td>{{this.duration}} minutes</td>
                 <td>{{this.rated}}</td>
+            </tr>
         </table>
 
 
