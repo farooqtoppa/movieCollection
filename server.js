@@ -11,6 +11,7 @@ var localStrategy   = require('passport-local').Strategy;
 var methodOverride = require('method-override');
 var session         = require('express-session');
 var morgan = require('morgan');
+var flash = require('connect-flash');
 var User = require('./db/schema.js').User
 // Instantiate new Express app:
 var app             = express();
@@ -23,7 +24,6 @@ mongoose.connect(mongoURI);
 //====================================
 // MIDDLE WARE
 //====================================
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.set("view engine", "hbs");
@@ -35,6 +35,7 @@ app.use(require('express-session')({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
