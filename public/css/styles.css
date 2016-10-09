@@ -8,7 +8,7 @@ body {
   padding: 2.5% 10%;
   font-family: "Montserrat", Helvetica, sans-serif;
   font-size: 18px;
-  background-image: url("http://previews.123rf.com/images/fotographic1980/fotographic19801204/fotographic1980120400376/13177359-cd-dvd-on-blue-digital-background-Stock-Vector-music-techno.jpg");
+  background-image: url("movie.jpg");
   opacity: 0.9;
   font-weight: bold;
 }
@@ -117,7 +117,13 @@ td{
 }
 
 #deleteact {
-  margin-top: 10px;
+  margin-top: 25px;
 }
+
+#logout{
+  float: right;
+}
+
+
 
 

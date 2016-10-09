@@ -1,4 +1,6 @@
-<a href="/users/logout"><p>Logout</p></a>
+{{#if user}}
+    <div id="logout"><a href="/users/logout">Logout</a></div>
+{{/if}}
 <h4>Log in</h4>
 
 <form action="/users/login" method="POST">
