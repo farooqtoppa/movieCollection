@@ -1,44 +1,44 @@
 {{#if user}}
     <div id="logout"><a href="/users/logout">Logout</a></div>
 {{/if}}
-<h4>Log in</h4>
 
-<form action="/users/login" method="POST">
-    <input type="text" name="username" placeholder="username">
-    <input type="password" name="password" placeholder="password">
-    <input type="submit">
-</form>
-
-<h4>Sign up</h4>
-
+<h4>Sign up for an account</h4>
 <form action="/users" method="POST">
-    <input type="text" name="username" placeholder="username">
-    <input type="password" name="password" placeholder="password">
-    <input type="submit">
+    <input type="text" name="username" class="input" placeholder="username">
+    <input type="password" class="input" name="password" placeholder="password">
+    <input type="submit" class="button">
 </form>
 
-<!--<a id="newUser" href="/users/new">New User</a>-->
+<h4>Log in here</h4>
+<form action="/users/login" method="POST">
+    <input type="text" class="input" name="username" placeholder="username">
+    <input type="password" class="input" name="password" placeholder="password">
+    <input type="submit" class="button">
+</form>
+
+
+<div id="registered">Registered Users</div>
 {{#each users}}
     <div class="users"><a href="/users/{{_id}}">{{username}}</a></div>
 
     {{#each movies}}
         <table style="width:100%">
             <tr>
-                <td>Title</td>
-                <td>Stars</td>
-                <td>Genre</td>
-                <td>Year</td>
-                <td>Duration</td>
-                <td>Rated</td>
+                <td class="movieHead">Title</td>
+                <td class="movieHead">Stars</td>
+                <td class="movieHead">Genre</td>
+                <td class="movieHead">Year</td>
+                <td class="movieHead">Duration</td>
+                <td class="movieHead">Rated</td>
              </tr>
              <tr>
-                <td>{{this.title}}</td>
-                <td>{{this.stars}}</td>
-                <td>{{this.genre}}</td>
-                <td>{{this.year}}</td>
-                <td>{{this.duration}} minutes</td>
-                <td>{{this.rated}}</td>
-            </tr>
+                <td class="movieInfo">{{this.title}}</td>
+                <td class="movieInfo">{{this.stars}}</td>
+                <td class="movieInfo">{{this.genre}}</td>
+                <td class="movieInfo">{{this.year}}</td>
+                <td class="movieInfo">{{this.duration}} minutes</td>
+                <td class="movieInfo">{{this.rated}}</td>
+            </tr><br>
         </table>
 
 

@@ -4,8 +4,8 @@
 <h2>Edit Your Account Info Below</h2>
 <form action="/users/{{user._id}}?_method=put" method="post">
     <label>Change Password:</label>
-    <input type="password" name='password'><input type="submit">
+    <input type="password" class="input" name='password'><input type="submit" class="button">
 </form>
 
-<div id="deleteact"><a href="/users/{{user._id}}/delete">Delete my account permanently</a></div>
-<a href="/users">See All Collecitons</a>
+<div id="deleteact"><a href="/users/{{user._id}}/delete">Delete my account permanently</a></div><br>
+<a href="/users">Go Back To Collections</a>

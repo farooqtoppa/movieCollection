@@ -1,11 +1,9 @@
 {{#if user}}
     <div id="logout"><a href="/users/logout">Logout</a></div>
 {{/if}}
-<div id="user-edit">
     <a href="/users/{{user._id}}/edit">Edit My Account</a>
     <a href="/users">See All Collections</a>
-</div>
-<div id="welcome">Welcome {{user.username}}</div>
+<div id="welcome">Your Collection</div>
 
 {{usertrue}}
 <div>
@@ -13,25 +11,25 @@
   <div class="each-movie">
     <table style="width:100%">
             <tr>
-                <td>Title</td>
-                <td>Stars</td>
-                <td>Genre</td>
-                <td>Year</td>
-                <td>Duration</td>
-                <td>Rated</td>
+                <td class="movieHead">Title</td>
+                <td class="movieHead">Stars</td>
+                <td class="movieHead">Genre</td>
+                <td class="movieHead">Year</td>
+                <td class="movieHead">Duration</td>
+                <td class="movieHead">Rated</td>
              </tr>
              <tr>
-                <td>{{this.title}}</td>
-                <td>{{this.stars}}</td>
-                <td>{{this.genre}}</td>
-                <td>{{this.year}}</td>
-                <td>{{this.duration}} minutes</td>
-                <td>{{this.rated}}</td>
+                <td class="movieInfo">{{this.title}}</td>
+                <td class="movieInfo">{{this.stars}}</td>
+                <td class="movieInfo">{{this.genre}}</td>
+                <td class="movieInfo">{{this.year}}</td>
+                <td class="movieInfo">{{this.duration}} minutes</td>
+                <td class="movieInfo">{{this.rated}}</td>
             </tr>
         </table>
     <form method="post" action="/users/{{../user._id}}/movies/{{_id}}?_method=delete">
-        <input type="submit" value="Delete Movie">
-    </form>
+        <input type="submit" class="button" value="Delete Movie">
+    </form><br>
   </div>
 {{/each}}
 </div>
@@ -51,7 +49,7 @@
         <input type="text" name="duration"><br>
         <label>Rated: </label>
         <input type="text" name="rated"><br>
-        <input type="submit">
+        <input type="submit" class="button">
     </form>
 </div>
 
