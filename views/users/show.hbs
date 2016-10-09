@@ -2,18 +2,30 @@
     <a href="/users/{{user._id}}/edit">Edit My Account</a>
     <a href="/users">See All Collections</a>
 </div>
-<p>Welcome {{user.username}}</p>
+<div id="welcome">Welcome {{user.username}}</div>
 
 {{usertrue}}
 <div>
 {{#each user.movies}}
   <div class="each-movie">
-    <p>Title: {{this.title}}</p>
-    <p>Stars: {{this.stars}}</p>
-    <p>Genre: {{this.genre}}</p>
-    <p>Year: {{this.year}}</p>
-    <p>Duration: {{this.duration}} minutes</p>
-    <p>Rated: {{this.rated}}</p>
+    <table style="width:100%">
+            <tr>
+                <td>Title</td>
+                <td>Stars</td>
+                <td>Genre</td>
+                <td>Year</td>
+                <td>Duration</td>
+                <td>Rated</td>
+             </tr>
+             <tr>
+                <td>{{this.title}}</td>
+                <td>{{this.stars}}</td>
+                <td>{{this.genre}}</td>
+                <td>{{this.year}}</td>
+                <td>{{this.duration}} minutes</td>
+                <td>{{this.rated}}</td>
+            </tr>
+        </table>
     <form method="post" action="/users/{{../user._id}}/movies/{{_id}}?_method=delete">
         <input type="submit" value="Delete Movie">
     </form>

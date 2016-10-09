@@ -2,13 +2,15 @@
   box-sizing: border-box;
 }
 
+
+
 body {
   padding: 2.5% 10%;
-  background-color: white;
   font-family: "Montserrat", Helvetica, sans-serif;
   font-size: 18px;
-  background-image: url("http://cdn.wallpapersafari.com/60/45/NxTrLU.jpg");
-  opacity: 0.7;
+  background-image: url("http://previews.123rf.com/images/fotographic1980/fotographic19801204/fotographic1980120400376/13177359-cd-dvd-on-blue-digital-background-Stock-Vector-music-techno.jpg");
+  opacity: 0.9;
+  font-weight: bold;
 }
 
 #container {
@@ -17,6 +19,7 @@ body {
   height: 100%;
   padding: 50px;
   background: white;
+  border-radius: 20px;
 }
 
 header {
@@ -27,18 +30,16 @@ header {
 /* authors/index.hbs */
 
 h1 a {
+  border: 2px solid grey;
+  border-radius: 10px;
   text-decoration: none;
-  color: gold;
+  color: blue;
   font-size: 3em;
   font-weight: 700;
 }
 
 
-.authorName a {
-  text-decoration: none;
-  color: #000000;
-  font-size: 1.5em;
-}
+
 
 .reminder {
   margin: 1em 0 1em 2em;
@@ -48,6 +49,7 @@ h1 a {
 /* authors/show.hbs */
 
 h2 {
+  margin-top: 80px;
   margin-bottom: 1.5em;
   font-size: 1.3em;
 
@@ -56,7 +58,7 @@ h2 {
 h3 {
   margin-bottom: 1em;
   font-size: 1em;
-  color: gold;
+  color: blue;
 }
 
 
@@ -107,6 +109,15 @@ td{
   border: #ccc 1px solid;
   padding: 10px;
   overflow: hidden;
+}
+
+#welcome {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+#deleteact {
+  margin-top: 10px;
 }
 
 

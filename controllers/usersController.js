@@ -77,7 +77,7 @@ router.post('/', function(req, res){
     new User({username: req.body.username}),
     req.body.password,
     function(err, user) {
-      if(err) return res.render('users/index');
+      if(err) return res.render('users/error');
       res.redirect('/users');
     });
 });
