@@ -2,8 +2,6 @@
   box-sizing: border-box;
 }
 
-
-
 body {
   padding: 2.5% 10%;
   font-family: "Montserrat", Helvetica, sans-serif;
@@ -92,7 +90,6 @@ h4{
   font-size: 1.1em;
 }
 table{
-  width: 100%;
   border-collapse:  collapse;
   table-layout: fixed;
   background: blue;
@@ -112,6 +109,11 @@ td{
 
 #deleteact {
   margin-top: 25px;
+  font-size: 0.8em;
+}
+
+#back{
+  font-size: 0.8em;
 }
 
 #logout{
@@ -123,6 +125,9 @@ td{
 a{
   color: black;
   color: darkblue;
+}
+a:hover{
+  background: grey;
 }
 .movieInfo{
   background: grey;
@@ -150,10 +155,14 @@ a{
 }
 .button:hover{
   background: grey;
+  cursor: pointer;
 }
 
 #registered{
   margin-top: 20px;
+}
+span{
+  margin: 80px;
 }
 
 

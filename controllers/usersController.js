@@ -11,12 +11,40 @@ router.get('/login', function(req,res){
   res.redirect('/users');
 });
 
-// login
+// ===========================
+// LOGIN IN
+// ===========================
 router.post('/login', passport.authenticate('local', {
     failureRedirect: '/users/error' }), function(req, res) {
     // success redirect goes to show page
     res.redirect('/users/' + req.user.id);
 });
+
+// ============================
+// LOG OUT
+// ============================
+router.get('/logout', function(req,res) {
+  req.logout();
+  res.redirect('/users');
+});
+
+// show all objects for testing purposes
+router.get('/json', function(req, res){
+  User.find(function(err, users){
+    res.send(users);
+  })
+});
+
+// ==================================
+// AUTHENTICATE
+// ==================================
+var authenticate = function(req, res, next) {
+  if(!req.user || req.user._id != req.params.id) {
+    res.render('users/error');
+  } else {
+    next()
+  }
+}
 
 // ==============================
 // USER INDEX ROUTE
@@ -32,27 +60,6 @@ router.get('/', (req, res) =>{
     console.log(err)
   });
 });
-
-// log out
-router.get('/logout', function(req,res) {
-  req.logout();
-  res.redirect('/users');
-});
-
-// show all objects for testing purposes
-router.get('/json', function(req, res){
-  User.find(function(err, users){
-    res.send(users);
-  })
-});
-
-var authenticate = function(req, res, next) {
-  if(!req.user || req.user._id != req.params.id) {
-    res.render('users/error');
-  } else {
-    next()
-  }
-}
 
 // ================================
 // USER SHOW ROUTE
@@ -133,7 +140,9 @@ router.post('/:id/movies', function(req, res){
   });
 });
 
+// ====================================
 // REMOVE A MOVIE
+// ====================================
 router.delete('/:userId/movies/:id', function (req, res){
   User.findByIdAndUpdate(req.params.userId, {
     $pull: {
