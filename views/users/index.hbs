@@ -18,18 +18,29 @@
 
 <!--<a id="newUser" href="/users/new">New User</a>-->
 {{#each users}}
-    <div class=>
-    <div class=><a href="/users/{{_id}}">{{username}}</a></div>
-        {{#each movies}}
-            <p class="movie">
-             Title: {{this.title}}<br>
-             Stars: {{this.stars}}<br>
-             Genre: {{this.genre}}<br>
-             Year Released: {{this.year}}<br>
-             Duration: {{this.duration}} minutes<br>
-             Rated: {{this.rated}}<br>
-            </p><br>
-        {{/each}}
-    </div>
+    <div class="users"><a href="/users/{{_id}}">{{username}}</a></div>
+
+    {{#each movies}}
+        <table border="5">
+            <tr>
+                <td>Title</td>
+                <td>Stars</td>
+                <td>Genre</td>
+                <td>Year</td>
+                <td>Duration</td>
+                <td>Rated</td>
+             </tr>
+             <tr>
+                <td>{{this.title}}</td>
+                <td>{{this.stars}}</td>
+                <td>{{this.genre}}</td>
+                <td>{{this.year}}</td>
+                <td>{{this.duration}}</td>
+                <td>{{this.rated}}</td>
+        </table>
+
+
+    {{/each}}
+
 {{/each}}
 

@@ -4,16 +4,18 @@
 
 body {
   padding: 2.5% 10%;
-  background-color: grey;
+  background-color: white;
   font-family: "Montserrat", Helvetica, sans-serif;
   font-size: 18px;
+  background-image: url("http://i1-news.softpedia-static.com/images/news2/Build-Your-Movie-Collection-with-Discounted-Flicks-from-iTunes-451403-2.jpg");
 }
 
 #container {
+  margin-top: -35px;
   width: 100%;
   height: 100%;
   padding: 50px;
-  background-color: white;
+  background: white;
 }
 
 header {
@@ -56,10 +58,6 @@ h3 {
   color: blue;
 }
 
-.each-movie {
-  display: block;
-  margin: 30px 40px 0px 40px;
-}
 
 #new-movie {
   margin: 3em 0 1.5em 0;
@@ -91,3 +89,19 @@ h3 {
   font-size: 1em;
   padding: 5px;
 }
+table{
+  width: 100%;
+  border-collapse:  collapse;
+  table-layout: fixed;
+}
+th{
+  text-align: left;
+  font-weight: normal;
+}
+th, td{
+  border: #ccc 1px solid;
+  padding: 10px;
+  overflow: hidden;
+}
+
+
