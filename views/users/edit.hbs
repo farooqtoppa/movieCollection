@@ -1,6 +1,7 @@
 {{#if user}}
     <div id="logout"><a href="/users/logout">Logout</a></div>
 {{/if}}
+
 <h2>Edit Your Account Info Below</h2>
 <form action="/users/{{user._id}}?_method=put" method="post">
     <label>Change Password:</label>

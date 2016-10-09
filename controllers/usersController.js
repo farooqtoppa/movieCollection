@@ -7,12 +7,15 @@ var User = Schema.User
 var Movie = Schema.Movie
 
 
+// ==========================
+// LOGIN GET
+// ==========================
 router.get('/login', function(req,res){
   res.redirect('/users');
 });
 
 // ===========================
-// LOGIN IN
+// LOGIN IN POST
 // ===========================
 router.post('/login', passport.authenticate('local', {
     failureRedirect: '/users/error' }), function(req, res) {
@@ -29,12 +32,11 @@ router.get('/logout', function(req,res) {
 });
 
 // show all objects for testing purposes
-router.get('/json', function(req, res){
-  User.find(function(err, users){
-    res.send(users);
-  })
-});
-
+//router.get('/json', function(req, res){
+  //User.find(function(err, users){
+    //res.send(users);
+  //})
+//});
 // ==================================
 // AUTHENTICATE
 // ==================================
@@ -45,7 +47,6 @@ var authenticate = function(req, res, next) {
     next()
   }
 }
-
 // ==============================
 // USER INDEX ROUTE
 // ==============================
@@ -75,7 +76,6 @@ router.get('/:id', authenticate,function(req, res) {
     });
 });
 
-
 // ================================
 // USER CREATE ROUTE
 // ================================
@@ -88,7 +88,6 @@ router.post('/', function(req, res){
       res.redirect('/users');
     });
 });
-
 
 // =================================
 // USER EDIT ROUTE

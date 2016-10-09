@@ -11,6 +11,11 @@ body {
   font-weight: bold;
 }
 
+header {
+  margin-bottom: 1em;
+  text-align: center;
+}
+
 #container {
   margin-top: -35px;
   width: 100%;
@@ -19,13 +24,6 @@ body {
   background: white;
   border-radius: 20px;
 }
-
-header {
-  margin-bottom: 1em;
-  text-align: center;
-}
-
-/* authors/index.hbs */
 
 h1 a {
   border: 2px solid grey;
@@ -53,36 +51,11 @@ h4{
   margin-top: 20px;
 }
 
-
 #new-movie {
   margin: 3em 0 1.5em 0;
   padding: 10px;
   border-radius: 5px;
   background-color: grey;
-}
-
-#user-edit a {
-  text-decoration: none;
-}
-
-#user-edit a:first-child {
-  display: inline-block;
-  padding: 5px;
-  border-radius: 5px;
-  background-color: grey;
-  color: #ffffff;
-  font-size: 1em;
-  margin: 10px 80px 0px 200px;
-}
-
-#user-edit a:nth-child(2n) {
-  color: blue;
-  display: inline-block;
-  background-color: grey;
-  border-radius: 5px;
-  color: #ffffff;
-  font-size: 1em;
-  padding: 5px;
 }
 
 .users{
@@ -163,6 +136,10 @@ a:hover{
 }
 span{
   margin: 80px;
+}
+
+.addMovie{
+  background: lightgrey;
 }
 
 

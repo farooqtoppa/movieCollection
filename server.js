@@ -44,12 +44,15 @@ passport.deserializeUser(User.deserializeUser());
 app.use(methodOverride('_method'));
 app.use(express.static(__dirname + '/public')); // for css
 
-
-// create a usersController
+// =======================
+// USER CONTROLLER
+// =======================
 var usersController = require("./controllers/usersController.js");
 app.use('/users', usersController);
 
-// route route
+// ======================
+// ROOT ROUTE
+// ======================
 app.get('/', function(req, res){
   res.redirect('/users');
 });
@@ -57,17 +60,28 @@ app.get('/', function(req, res){
 // save connection to data base
 var db = mongoose.connection;
 
+// ============================
 // log error if db cant connect
+// ============================
 db.on('error', function(err){
   console.log(err);
 });
 
+// ==========================================
 // log "db has been connected" if it connects
+// ==========================================
 db.once('open', function(){
   console.log("database has been connected!");
 });
 
-// listening port
+hbs.registerHelper("inc", function(value, options)
+{
+    return parseInt(value) + 1;
+});
+
+// ========================
+// LISTENING PORT
+// ========================
 app.listen(process.env.PORT || 3000, function(){
   console.log("app listening on port 3000");
 });

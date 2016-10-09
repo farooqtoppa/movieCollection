@@ -16,12 +16,12 @@
     <input type="submit" class="button">
 </form>
 
-
 <div id="registered">Registered Users</div>
 {{#each users}}
-    <div class="users"><a href="/users/{{_id}}">{{username}}</a></div>
+    <div class="users"><a href="/users/{{_id}}">{{username}}</a></div><br>
 
     {{#each movies}}
+        Movie {{inc @index}}
         <table style="width:100%">
             <tr>
                 <td class="movieHead">Title</td>
@@ -39,8 +39,7 @@
                 <td class="movieInfo">{{this.duration}} minutes</td>
                 <td class="movieInfo">{{this.rated}}</td>
             </tr><br>
-        </table>
-
+        </table><br>
 
     {{/each}}
 

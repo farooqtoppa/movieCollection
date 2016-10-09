@@ -1,5 +1,3 @@
-// this file is ran seperately
-
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/moviecollection');
 var Schema = require("./schema.js");
@@ -7,7 +5,7 @@ var Schema = require("./schema.js");
 var User = Schema.User
 var Movie = Schema.Movie
 
-// remove so same people arent added
+// Remove to avoid repetition
 User.remove({}, function(err){
     console.log(err)
 });
@@ -16,11 +14,15 @@ Movie.remove({}, function(err){
     console.log(err)
 });
 
-// create users
+// =======================
+// CREATE USERS
+// =======================
 var farooq = new User({username: "Farooq",});
 var marc = new User({username: "Marc",});
 
-// create movies
+// ========================
+// CREATE MOVIES
+// ========================
 var movie1 = new Movie({
   title: "Toy Story",
   year: 1995,
@@ -49,13 +51,16 @@ var movie3 = new Movie({
   rated: "PG"
 });
 
-
-// add movies to both users
+// =========================
+// ADD MOVIES TO USERS
+// =========================
 farooq.movies.push(movie1);
 farooq.movies.push(movie3);
 marc.movies.push(movie2);
 
-// save to db
+// =========================
+// SAVE TO DB
+// =========================
 farooq.save(function(err){
   if(err){
     console.log(err)

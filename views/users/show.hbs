@@ -1,32 +1,36 @@
 {{#if user}}
     <div id="logout"><a href="/users/logout">Logout</a></div>
 {{/if}}
-    <a href="/users/{{user._id}}/edit"><span>Edit My Account</span></a>
-    <a href="/users"><span>See All Collections</span></a>
+
+<a href="/users/{{user._id}}/edit"><span>Edit My Account</span></a>
+<a href="/users"><span>See All Collections</span></a>
 <div id="welcome">Your Collection</div>
 
 {{usertrue}}
+
 <div>
 {{#each user.movies}}
   <div class="each-movie">
+    Movie Info
     <table style="width:100%">
-            <tr>
-                <td class="movieHead">Title</td>
-                <td class="movieHead">Stars</td>
-                <td class="movieHead">Genre</td>
-                <td class="movieHead">Year</td>
-                <td class="movieHead">Duration</td>
-                <td class="movieHead">Rated</td>
-             </tr>
-             <tr>
-                <td class="movieInfo">{{this.title}}</td>
-                <td class="movieInfo">{{this.stars}}</td>
-                <td class="movieInfo">{{this.genre}}</td>
-                <td class="movieInfo">{{this.year}}</td>
-                <td class="movieInfo">{{this.duration}} minutes</td>
-                <td class="movieInfo">{{this.rated}}</td>
-            </tr>
-        </table>
+        <tr>
+            <td class="movieHead">Title</td>
+            <td class="movieHead">Stars</td>
+            <td class="movieHead">Genre</td>
+            <td class="movieHead">Year</td>
+            <td class="movieHead">Minutes</td>
+            <td class="movieHead">Rated</td>
+        </tr>
+        <tr>
+            <td class="movieInfo">{{this.title}}</td>
+            <td class="movieInfo">{{this.stars}}</td>
+            <td class="movieInfo">{{this.genre}}</td>
+            <td class="movieInfo">{{this.year}}</td>
+            <td class="movieInfo">{{this.duration}} minutes</td>
+            <td class="movieInfo">{{this.rated}}</td>
+        </tr>
+    </table>
+
     <form method="post" action="/users/{{../user._id}}/movies/{{_id}}?_method=delete">
         <input type="submit" class="button" value="Delete Movie">
     </form><br>
@@ -38,17 +42,17 @@
   <h3>Add New Movie</h3>
     <form action="/users/{{user._id}}/movies" method="post">
         <label>Title: </label>
-        <input type="text" name="title"><br>
+        <input type="text" class="addMovie" name="title"><br>
         <label>Stars: </label>
-        <input type="text" name="stars"><br>
+        <input type="text" class="addMovie" name="stars"><br>
         <label>Genre: </label>
-        <input type="text" name="genre"><br>
+        <input type="text" class="addMovie" name="genre"><br>
         <label>Year: </label>
-        <input type="text" name="year"><br>
-        <label>Duration: </label>
-        <input type="text" name="duration"><br>
+        <input type="text" class="addMovie" name="year"><br>
+        <label>Minutes </label>
+        <input type="text" class="addMovie"name="duration"><br>
         <label>Rated: </label>
-        <input type="text" name="rated"><br>
+        <input type="text" class="addMovie"name="rated"><br>
         <input type="submit" class="button">
     </form>
 </div>
