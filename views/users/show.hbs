@@ -21,14 +21,14 @@
             <td class="movieHead">Minutes</td>
             <td class="movieHead">Rated</td>
         </tr>
-        <tr>
+        {{#each movies}}
             <td class="movieInfo">{{this.title}}</td>
             <td class="movieInfo">{{this.stars}}</td>
             <td class="movieInfo">{{this.genre}}</td>
             <td class="movieInfo">{{this.year}}</td>
             <td class="movieInfo">{{this.duration}} minutes</td>
             <td class="movieInfo">{{this.rated}}</td>
-        </tr>
+        {{/each}}
     </table>
 
     <form method="post" action="/users/{{../user._id}}/movies/{{_id}}?_method=delete">
