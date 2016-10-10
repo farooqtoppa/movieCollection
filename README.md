@@ -1,6 +1,6 @@
 # Project 2
 
-# Movie Collection App  
+<h2>Movie Collection App</h2>  
 
 # Purpose Of App
 <p>The purpose of this app is to allow users to create and edit their own movie collection that saves to a Mongo DB. Users are also able to have their own username and password making their account only accessible to themselves.</p>
